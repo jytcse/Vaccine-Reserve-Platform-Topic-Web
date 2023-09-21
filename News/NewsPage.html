@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 公費疫苗預約平台</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/navBarStyle.css">
+    <link rel="stylesheet" href="../css/footerWrapperStyle.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            font-family: 'Roboto', sans-serif;
+            --leftSpace: 160px;
+            --BoxLeftSpace: 60px;
+            --boxBorderColor: #E6F4ED;
+            --boxTitleFontSize: 36px;
+            --tableLineColor: #dcdcdc;
+            --newsFontSize: 30px;
+            --newsTitleFontColor: #068511;
+            --footerTopSpace: 10px;
+
+        }
+
+        body {
+            background-image: url("../assets/line.svg");
+            overflow: hidden;
+        }
+
+
+        .wrapper {
+            display: flex;
+            margin-top: 35px;
+            margin-left: var(--leftSpace);
+        }
+
+        .wrapper .box {
+            width: 1641px;
+            height: 668px;
+            border-radius: 50px;
+            background-color: white;
+            border: 5px solid var(--boxBorderColor);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding-right: 40px;
+        }
+
+        .boxTitle {
+            margin-left: var(--BoxLeftSpace);
+            font-size: var(--boxTitleFontSize);
+        }
+
+        .boxContent {
+            width: 100%;
+            display: flex;
+            padding-left: var(--BoxLeftSpace);
+            flex-wrap: wrap;
+            box-sizing: border-box;
+            /* overflow: scroll; */
+            overflow-x: hidden;
+            margin-bottom: 40px;
+        }
+
+        .newsTable {
+            border-top: 1px solid var(--tableLineColor);
+            border-collapse: collapse;
+            width: 98%;
+        }
+
+        .newsTable tbody .newsRow {
+            border-bottom: 1px solid var(--tableLineColor);
+            width: 100%;
+        }
+
+        .newsTable tbody .newsTitle {
+            color: var(--newsTitleFontColor);
+            font-size: var(--newsFontSize);
+            font-weight: bold;
+            padding: 20px 10px;
+            width: 85%;
+        }
+
+        .newsTable tbody .newsPostDate {
+            text-align: right;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: var(--newsFontSize);
+            width: 15%;
+        }
+
+        .link {
+            text-decoration: none;
+        }
+
+        .link:link {
+            color: var(--newsTitleFontColor);
+        }
+
+        .link:active {
+            color: var(--newsTitleFontColor);
+        }
+
+        .link:visited {
+            color: var(--newsTitleFontColor);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="navBarLogo">
+            <a href="../index.html">
+
+                <img src="../assets/logo.svg" alt="" srcset="">
+            </a>
+        </div>
+        <span class="navBarTitle">COVID-19 公費疫苗預約平台</span>
+    </nav>
+    <main>
+        <div class="wrapper">
+            <div class="box">
+                <h3 class="boxTitle">疫情資訊</h3>
+                <div class="boxContent">
+                    <table class="newsTable">
+                        <tbody class="newsTableBody">
+                            <!-- 動態增加內容 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footerWrapper">
+            <p>
+                Copyright © 2022 疫苗預約系統
+                <br>
+                Copyright © 2022 COVID-19 Vaccination Appointment System
+            </p>
+        </div>
+    </footer>
+    <script>
+        let newsBaseApi = 'http://*apiServer*/api/news';
+        fetch(newsBaseApi, {})
+            .then(res => res.json()) //回應轉json格式
+            .then(data => {
+                console.log(data);
+                data.forEach(element => {
+                    //將每筆資料渲染到頁面上，超連結記得URL後方接上該文章id，以供詳細疫情資訊頁面使用
+                    let html = `
+                    <tr class="newsRow">
+                        <td class="newsTitle">
+                            <a class="link" href="./SingleNewsPage.html?id=${element.Id}">${element.Title}</a>
+                        </td>
+                        <td class="newsPostDate">${element.Date.replaceAll("-", "/")}</td>
+                    </tr>`;
+                    //插入html到.newsTableBody
+                    document.querySelector(".newsTableBody").insertAdjacentHTML("beforeend", html)
+                });
+            });
+    </script>
+</body>
+
+</html>

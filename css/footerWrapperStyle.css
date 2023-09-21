@@ -1,0 +1,6 @@
+.footerWrapper {
+    display: flex;
+    margin-top: var(--footerTopSpace);
+    margin-left: var(--leftSpace);
+    font-size: 20px;
+}

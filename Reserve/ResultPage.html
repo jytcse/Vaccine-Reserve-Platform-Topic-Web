@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 公費疫苗預約平台</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/navBarStyle.css">
+    <link rel="stylesheet" href="../css/footerWrapperStyle.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            font-family: 'Roboto', sans-serif;
+            --leftSpace: 160px;
+            --BoxLeftSpace: 147px;
+            --boxBgColor: #E6F4ED;
+            --boxTitleColor: #496A52;
+            --boxTitleFontSize: 36px;
+            --colTitleColor: #068511;
+            --colTitleFontSize: 30px;
+            --footerTopSpace: 10px;
+        }
+
+        body {
+            background-image: url("../assets/line.svg");
+            overflow: hidden;
+        }
+
+
+        .wrapper {
+            display: flex;
+            margin-top: 35px;
+            margin-left: var(--leftSpace);
+        }
+
+        .wrapper .box {
+            width: 1613px;
+            height: 668px;
+            border-radius: 50px;
+            background-color: var(--boxBgColor);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding-left: var(--BoxLeftSpace);
+        }
+
+        .boxTitle {
+            margin-top: 80px;
+            font-size: var(--boxTitleFontSize);
+            color: var(--boxTitleColor);
+        }
+
+        .boxContent {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            width: 50%;
+            display: flex;
+            align-items: center;
+        }
+
+        .col>div {
+            width: 30%;
+        }
+
+        .col.colRight>div {
+            width: 25%;
+        }
+
+        .colTitle {
+            color: var(--colTitleColor);
+            font-size: var(--colTitleFontSize);
+            white-space: nowrap;
+        }
+
+        .colInput {
+            width: 323px;
+            height: 52px;
+            border-radius: 6px;
+            border: 0px solid #4B9A79;
+            font-size: 26px;
+            color: rgba(33, 33, 33, 0.64);
+            padding-left: 13px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        input#HospName {
+            width: 75%;
+        }
+
+        .boxFooter {
+            display: flex;
+            align-items: center;
+            margin-top: 70px;
+        }
+
+        .boxFooter div {
+            width: 50%;
+        }
+
+        .boxButton {
+            width: 540px;
+            height: 93px;
+            color: #ECFAE2;
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            background-color: #539552;
+            border-radius: 30px;
+            border: none;
+        }
+
+        .boxButton:hover {
+            cursor: pointer;
+        }
+
+        .boxCancelButton {
+            width: 563px;
+            height: 93px;
+            color: #ECFAE2;
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            background-color: #b41919;
+            border-radius: 30px;
+            border: none;
+        }
+
+        .boxCancelButton:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="navBarLogo">
+            <a href="../index.html">
+
+                <img src="../assets/logo.svg" alt="" srcset="">
+            </a>
+        </div>
+        <span class="navBarTitle">COVID-19 公費疫苗預約平台</span>
+    </nav>
+    <main>
+        <div class="wrapper">
+            <div class="box">
+                <h3 class="boxTitle">預約登入結果</h3>
+                <div class="boxContent">
+                    <div class="col">
+                        <div>
+                            <h3 class="colTitle">姓名</h3>
+                        </div>
+                        <!-- Input位置 #Name -->
+                        <input type="text" id="Name" class="colInput" disabled value="">
+                    </div>
+                    <div class="col colRight">
+                        <div>
+                            <h3 class="colTitle">接種區域</h3>
+                        </div>
+                        <!-- Input位置 #City -->
+                        <input type="text" id="City" class="colInput" disabled value="">
+                    </div>
+                    <div class="col">
+                        <div>
+                            <h3 class="colTitle">手機號碼</h3>
+                        </div>
+                        <!-- Input位置 #Phone -->
+                        <input type="text" id="Phone" class="colInput" disabled value="">
+                    </div>
+                    <div class="col colRight">
+                        <div>
+                            <h3 class="colTitle">疫苗</h3>
+                        </div>
+                        <!-- Input位置 #VaccineType -->
+                        <input type="text" id="VaccineType" class="colInput" disabled value="">
+                    </div>
+                    <div class="col">
+                        <div>
+                            <h3 class="colTitle">身分證字號</h3>
+                        </div>
+                        <!-- Input位置 #ROCId -->
+                        <input type="text" id="ROCId" class="colInput" disabled value="">
+                    </div>
+                    <div class="col colRight">
+                        <div>
+                            <h3 class="colTitle">施打地點</h3>
+                        </div>
+                        <!-- Input位置 #HospName -->
+                        <input type="text" id="HospName" class="colInput" disabled value="">
+                    </div>
+                </div>
+                <div class="boxFooter">
+                    <div class="boxButtonDiv">
+                        <button class="boxButton">回到首頁</button>
+                    </div>
+                    <div class="boxButtonDiv">
+                        <button class="boxCancelButton">取消預約</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footerWrapper">
+            <p>
+                Copyright © 2022 疫苗預約系統
+                <br>
+                Copyright © 2022 COVID-19 Vaccination Appointment System
+            </p>
+        </div>
+    </footer>
+    <script>
+        let citySelect = document.querySelector("#City");
+        let distSelect = document.querySelector("#Dist");
+        let vaccineSelect = document.querySelector("#VaccineType");
+        let hospitalSelect = document.querySelector("#HospName");
+        let reserveApiBaseUrl = 'http://*apiServer*/api/reserve';
+        // 1.解析URL 取得網址參數串在基礎URL上
+        let currentUrl = new URL(location.href);
+        // 2.取得預約資料 currentUrl.search = ?=rocId=N12345678
+        fetch(reserveApiBaseUrl + currentUrl.search, {
+            method: "GET",
+        })
+            .then(res => res.json()) //回應轉json格式
+            .then(data => {
+                if (data.Result != 'Denied') {
+                    data = data[0];
+                    // 資料渲染
+                    document.querySelector("#ROCId").value = data.ROCId;
+                    document.querySelector("#Name").value = data.Name;
+                    document.querySelector("#Phone").value = data.Phone;
+                    //縣市與地區合併為一欄
+                    citySelect.value = data.City + data.Dist;
+                    vaccineSelect.value = data.VaccineType;
+                    hospitalSelect.value = data.HospName;
+                } else {
+                    // 沒有資料，轉跳到預約 可能發生這情況的例子:1.直接訪問這個頁面/ResultPage.html 2.網址沒有帶參數(身分證字號)
+                    location.href = './ReservePage.html';
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+        // 監聽取消預約按鈕
+        document.querySelector(".boxCancelButton").addEventListener('click', function () {
+            if (confirm("是否取消預約?")) { //二次確認操作
+                fetch(reserveApiBaseUrl, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    // 物件轉 json
+                    body: JSON.stringify({
+                        "ROCId": document.querySelector("#ROCId").value,
+                    }),
+                })
+                    .then(res => res.json()) //回應轉為json格式
+                    .then(data => {
+                        console.log(data);
+                        if (data.Result == 'Access') {
+                            //取消預約成功，跳轉到首頁
+                            location.href = '../index.html';
+                        }
+                    }).catch((error) => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                // 不取消，就按兵不動
+            }
+        });
+        // 回到首頁按鈕
+        document.querySelector(".boxButton").addEventListener('click', function () {
+            if (confirm("完成確認，並回到首頁?")) { //二次確認操作
+                location.href = "../index.html";
+            }
+        });
+    </script>
+</body>
+
+</html>

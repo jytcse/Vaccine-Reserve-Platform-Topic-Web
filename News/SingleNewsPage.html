@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 公費疫苗預約平台</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/navBarStyle.css">
+    <link rel="stylesheet" href="../css/footerWrapperStyle.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            font-family: 'Roboto', sans-serif;
+            --leftSpace: 160px;
+            --BoxLeftSpace: 60px;
+            --BoxRightSpace: 60px;
+            --boxBorderColor: #E6F4ED;
+            --boxTitleFontSize: 36px;
+            /* --newsTitleFontColor: #068511; */
+            --footerTopSpace: 10px;
+
+        }
+
+        body {
+            background-image: url("../assets/line.svg");
+            overflow: hidden;
+        }
+
+
+        .wrapper {
+            display: flex;
+            margin-top: 35px;
+            margin-left: var(--leftSpace);
+        }
+
+        .wrapper .box {
+            width: 1641px;
+            height: 668px;
+            border-radius: 50px;
+            background-color: white;
+            padding-right: 30px;
+            border: 5px solid var(--boxBorderColor);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .boxTitle {
+            width: 75%;
+            margin-left: calc(var(--BoxLeftSpace) + 40px);
+            font-size: var(--boxTitleFontSize);
+            /* margin-bottom: 20px; */
+            margin-top: 40px;
+            margin-bottom: 30px;
+            /* text-align: center; */
+        }
+
+        #prePageButton {
+            position: absolute;
+            background-color: #048800;
+            top: 11.5%;
+            right: 9.5%;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 20px;
+            transition: all .2s ease-in-out;
+        }
+
+        #prePageButton:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        hr {
+            width: 86%;
+            border: 1px solid gainsboro;
+            margin-bottom: 30px;
+            margin-left: calc(var(--BoxLeftSpace) + 40px);
+        }
+
+        .boxContent {
+
+            width: 100%;
+            display: flex;
+            text-indent: 2em;
+            padding-left: calc(var(--BoxLeftSpace) + 40px);
+            padding-right: calc(var(--BoxRightSpace) + 40px);
+            flex-wrap: wrap;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            margin-bottom: 40px;
+            font-size: 22px;
+            word-break: break-all;
+            word-wrap: break-word;
+            letter-spacing: .05em;
+            line-height: 175%;
+        }
+
+        .link {
+            text-decoration: none;
+        }
+
+        .link:link {
+            color: var(--newsTitleFontColor);
+        }
+
+        .link:active {
+            color: var(--newsTitleFontColor);
+        }
+
+        .link:visited {
+            color: var(--newsTitleFontColor);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="navBarLogo">
+            <a href="../index.html">
+
+                <img src="../assets/logo.svg" alt="" srcset="">
+            </a>
+        </div>
+        <span class="navBarTitle">COVID-19 公費疫苗預約平台</span>
+    </nav>
+    <main>
+        <div class="wrapper">
+            <div class="box">
+                <h3 class="boxTitle"></h3>
+                <button id="prePageButton">回上頁</button>
+                <hr>
+                <div class="boxContent">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footerWrapper">
+            <p>
+                Copyright © 2022 疫苗預約系統
+                <br>
+                Copyright © 2022 COVID-19 Vaccination Appointment System
+            </p>
+        </div>
+    </footer>
+    <script>
+        let newsBaseApi = 'http://*apiServer*/api/news';
+        let currentUrl = new URL(location.href);
+        fetch(newsBaseApi + "/" + currentUrl.search.replace("?id=", ""), {})
+            .then(res => res.json())
+            .then(data => {
+                document.querySelector(".boxTitle").textContent = '';
+                document.querySelector(".boxTitle").textContent = data[0].Title;
+                document.querySelector(".boxContent").insertAdjacentHTML("beforeend", data[0].Text);
+            });
+        document.querySelector("#prePageButton").addEventListener('click', function () {
+            history.go(-1);
+        });
+    </script>
+</body>
+
+</html>

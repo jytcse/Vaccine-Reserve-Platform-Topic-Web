@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 公費疫苗預約平台</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/navBarStyle.css">
+    <link rel="stylesheet" href="../css/footerWrapperStyle.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            font-family: 'Roboto', sans-serif;
+            --leftSpace: 160px;
+            --BoxLeftSpace: 147px;
+            --boxBgColor: #E6F4ED;
+            --boxTitleColor: #496A52;
+            --boxTitleFontSize: 36px;
+            --colTitleColor: #068511;
+            --colTitleFontSize: 30px;
+            --footerTopSpace: 10px;
+        }
+
+        body {
+            background-image: url("../assets/line.svg");
+            overflow: hidden;
+        }
+
+
+        .wrapper {
+            display: flex;
+            margin-top: 35px;
+            margin-left: var(--leftSpace);
+        }
+
+        .wrapper .box {
+            width: 1613px;
+            height: 668px;
+            border-radius: 50px;
+            background-color: var(--boxBgColor);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding-left: var(--BoxLeftSpace);
+        }
+
+        .boxTitle {
+            margin-top: 80px;
+            font-size: var(--boxTitleFontSize);
+            color: var(--boxTitleColor);
+        }
+
+        .boxContent {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            width: 50%;
+            display: flex;
+            align-items: center;
+        }
+
+        .col>div {
+            width: 30%;
+        }
+
+        .colTitle {
+            color: var(--colTitleColor);
+            font-size: var(--colTitleFontSize);
+            white-space: nowrap;
+        }
+
+        .colInput {
+            width: 323px;
+            height: 52px;
+            border-radius: 6px;
+            border: 0.6px solid #4B9A79;
+            font-size: 26px;
+            color: rgba(33, 33, 33, 0.64);
+            padding-left: 13px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .colSelect {
+            width: 323px;
+            height: 52px;
+            border-radius: 6px;
+            border: 0.6px solid #4B9A79;
+            font-size: 26px;
+            color: rgba(33, 33, 33, 0.64);
+            padding-left: 13px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .colSelect#City {
+            width: 161px;
+        }
+
+        .colSelect#Dist {
+            margin-left: 20px;
+            width: 161px;
+            /* width:161px; */
+        }
+
+        .colSelect#VaccineType,
+        .colSelect#HospName {
+            width: 342px;
+        }
+
+        .colSelect#City option:not(:first-child),
+        .colSelect#Dist option:not(:first-child),
+        .colSelect#HospName option:not(:first-child):not(:disabled),
+        .colSelect#VaccineType option:not(:first-child) {
+            color: black;
+        }
+
+        .boxFooter {
+            display: flex;
+            align-items: center;
+            margin-top: 70px;
+        }
+
+        .allowCheckBoxDiv {
+            font-weight: 500;
+            font-size: 26px;
+            width: 50%;
+        }
+
+        .allowCheckBoxDiv a {
+            text-decoration: none;
+        }
+
+        .boxButtonDiv {
+            width: 50%;
+        }
+
+        .allowCheckBox {
+            height: 22px;
+            width: 22px;
+        }
+
+        .boxButton {
+            width: 563px;
+            height: 93px;
+            color: #ECFAE2;
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            background-color: #539552;
+            border-radius: 30px;
+            border: none;
+            transition: all .2s ease-in-out;
+        }
+
+        .boxButton:hover {
+            cursor: pointer;
+            transform: scale(1.01);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="navBarLogo">
+            <a href="../index.html">
+
+                <img src="../assets/logo.svg" alt="" srcset="">
+            </a>
+        </div>
+        <span class="navBarTitle">COVID-19 公費疫苗預約平台</span>
+    </nav>
+    <main>
+        <div class="wrapper">
+            <div class="box">
+                <h3 class="boxTitle">預約疫苗</h3>
+                <!-- 表單位置 #reserveForm -->
+                <form id="reserveForm" method="post">
+                    <div class="boxContent">
+                        <div class="col">
+                            <div>
+                                <h3 class="colTitle">姓名</h3>
+                            </div>
+                            <!-- Input位置 #Name -->
+                            <input type="text" id="Name" class="colInput" placeholder="輸入姓名" required value="">
+                        </div>
+                        <div class="col">
+                            <div>
+                                <h3 class="colTitle">選擇接種區域</h3>
+                            </div>
+                            <!-- select位置 #City -->
+                            <select class="colSelect" id="City" required>
+                                <option selected value="" disabled>選擇縣市</option>
+                            </select>
+                            <!-- select位置 #Dist -->
+                            <select class="colSelect" id="Dist" required>
+                                <option selected value="" disabled>選擇地區</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <h3 class="colTitle">手機號碼</h3>
+                            </div>
+                            <!-- input位置 #Phone -->
+                            <input type="text" id="Phone" class="colInput" placeholder="輸入手機號碼" required value="">
+                        </div>
+                        <div class="col">
+                            <div>
+                                <h3 class="colTitle">選擇疫苗</h3>
+                            </div>
+                            <!-- select位置 #VaccineType -->
+                            <select class="colSelect" id="VaccineType" required>
+                                <option selected value="" disabled>選擇疫苗</option>
+                                <option value="AstraZeneca">AstraZeneca</option>
+                                <option value="高端">高端</option>
+                                <option value="BioNTech">BioNTech</option>
+                                <option value="Moderna">Moderna</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <h3 class="colTitle">身分證字號</h3>
+                            </div>
+                            <!-- input位置 #ROCId -->
+                            <input type="text" id="ROCId" class="colInput" required placeholder="輸入身分證字號" value="">
+                        </div>
+                        <div class="col">
+                            <div>
+                                <h3 class="colTitle">選擇施打地點</h3>
+                            </div>
+                            <!-- select位置 #HospName -->
+                            <select class="colSelect" id="HospName" required>
+                                <option selected value="" disabled>選擇施打地點</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="boxFooter">
+                        <div class="allowCheckBoxDiv">
+                            <label>
+                                <input type="checkbox" class="allowCheckBox" required>
+                                我已閱讀並同意 <a style="color: #8B8A64;" href="#">隱私權公告</a>
+                            </label>
+                        </div>
+                        <div class="boxButtonDiv">
+                            <button class="boxButton" type="submit">立即預約</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footerWrapper">
+            <p>
+                Copyright © 2022 疫苗預約系統
+                <br>
+                Copyright © 2022 COVID-19 Vaccination Appointment System
+            </p>
+        </div>
+    </footer>
+    <script>
+
+
+        // 1.取得縣市資料
+        let cityApiBaseUrl = 'http://*apiServer*/api/vachosp';
+        let citySelect = document.querySelector("#City"),
+            distSelect = document.querySelector("#Dist"),
+            vaccineSelect = document.querySelector("#VaccineType"),
+            hospitalSelect = document.querySelector("#HospName");
+        fetch(cityApiBaseUrl, {
+            method: "GET",
+        })
+            .then(res => res.json()) // 回應轉換成json格式
+            .then(data => {
+                data.forEach(element => {
+                    // 插入Html到 #city 的下拉選單裡
+                    citySelect.insertAdjacentHTML("beforeend", `<option value="${element}">${element}</option>`)
+                });
+
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
+
+        // 新增監聽器，縣市變動的話 清空地區、施打地點的選項 並重新渲染資料
+        citySelect.addEventListener("change", function () {
+            distSelect.innerHTML = "";
+            distSelect.insertAdjacentHTML("beforeend", `<option selected value="" disabled>選擇地區</option>`);
+            hospitalSelect.innerHTML = "";
+            hospitalSelect.insertAdjacentHTML("beforeend", `<option selected value="" disabled>選擇施打地點</option>`);
+            // 清空後，重新渲染資料
+            CreateDistData(this.value); //this.value = citySelect.value
+        });
+        // 2.取得地區資料
+        function CreateDistData(city) {
+            // URL部分，city為使用者所選的縣市
+            fetch(cityApiBaseUrl + "?city=" + city, {
+                method: "GET",
+            })
+                .then(res => res.json())// 回應轉換成json格式
+                .then(data => {
+                    data.forEach(element => {
+                        // 插入Html到地區 #dist 的下拉選單裡
+                        distSelect.insertAdjacentHTML("beforeend", `<option value="${element}">${element}</option>`)
+                    });
+                }).catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // 3.取得施打地點資料，疫苗種類與地區使用者都要決定之後才會渲染施打地區
+        distSelect.addEventListener("change", function () {
+            // 呼叫檢查Function
+            CheckDistAndVaccine();
+        });
+        vaccineSelect.addEventListener("change", function () {
+            // 呼叫檢查Function
+            CheckDistAndVaccine();
+        });
+        // 檢查地區與疫苗欄位都選擇了 才可選擇施打地點
+        function CheckDistAndVaccine() {
+            // 如果都選擇了，就渲染施打地點
+            if (citySelect.value != '' && distSelect.value != '' && vaccineSelect.value != '') {
+                hospitalSelect.innerHTML = "";
+                hospitalSelect.insertAdjacentHTML("beforeend", `<option selected value="" disabled>選擇施打地點</option>`);
+                // 呼叫渲染施打地點函式，並帶入使用者所選的 Value
+                CreateHospitalData(citySelect.value, distSelect.value, vaccineSelect.value);
+            }
+        }
+        function CreateHospitalData(city, dist, vaccine) { //取的施打地點資料，並渲染
+            // URL部分，city為使用者所選的縣市，dist為地區，vaccine為疫苗種類
+            fetch(cityApiBaseUrl + "?city=" + city + "&dist=" + dist + "&vaccine=" + vaccine, {
+                method: "GET",
+            })
+                .then(res => res.json())// 回應轉換成json格式
+                .then(data => {
+                    if (data[0] == null) {
+                        // 如果沒有任何可以施打的地點
+                        hospitalSelect.insertAdjacentHTML("beforeend", `<option value="" disabled>沒有可提供施打地點</option>`)
+
+                    } else {
+                        // 有可供施打地點，渲染資料
+                        data.forEach(element => {
+                            hospitalSelect.insertAdjacentHTML("beforeend", `<option value="${element}">${element}</option>`)
+                        });
+                    }
+                }).catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // 4.預約表單送出 利用原生Form內建的表單驗證 來檢查資料是否齊全
+        document.querySelector("#reserveForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // 阻止表單預設送出事件，之後我們利用Fetch Api 來送出非同步請求
+            let reserveApiBaseUrl = 'http://*apiServer*/api/reserve';
+            fetch(reserveApiBaseUrl, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                // 物件轉為Headers指定的 JSON
+                body: JSON.stringify({
+                    // 抓取 Input 與 Select 的 Value
+                    "ROCId": document.querySelector("#ROCId").value,
+                    "Name": document.querySelector("#Name").value,
+                    "Phone": document.querySelector("#Phone").value,
+                    "VaccineType": vaccineSelect.value,
+                    "City": citySelect.value,
+                    "Dist": distSelect.value,
+                    "HospName": hospitalSelect.value,
+                }),
+            })
+                .then(res => res.json())// 回應轉換成json格式
+                .then(data => {
+                    console.log(data);
+                    if (data.Result == 'Access') {
+                        // 預約成功，轉跳結果頁面
+                        location.href = './ResultPage.html?rocId=' + document.querySelector("#ROCId").value;
+                    }
+                }).catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>

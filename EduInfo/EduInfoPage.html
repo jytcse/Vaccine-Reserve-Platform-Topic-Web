@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 公費疫苗預約平台</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/navBarStyle.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            font-family: 'Roboto', sans-serif;
+            --leftSpace: 160px;
+            --BoxLeftSpace: 100px;
+            --boxBorderColor: #E6F4ED;
+            --boxTitleColor: #496A52;
+            --boxTitleFontSize: 36px;
+            --videoTitleFontSize: 24px;
+            --footerTopSpace: 10px;
+        }
+
+        body {
+            background-image: url("../assets/line.svg");
+            overflow: hidden;
+        }
+
+
+        .wrapper {
+            display: flex;
+            margin-top: 35px;
+            margin-left: var(--leftSpace);
+        }
+
+        .wrapper .box {
+            width: 1641px;
+            height: 668px;
+            border-radius: 50px;
+            background-color: white;
+            border: 5px solid var(--boxBorderColor);
+            /* background-color: var(--boxBorderColor); */
+            padding-right: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            /* box-sizing: border-box; */
+            /* padding-left: var(--BoxLeftSpace); */
+
+        }
+
+        .boxTitle {
+            margin-left: var(--BoxLeftSpace);
+            font-size: var(--boxTitleFontSize);
+            margin-bottom: 20px;
+        }
+
+
+
+        .boxContent {
+            width: 100%;
+            display: flex;
+            padding-left: 100px;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+            /* overflow: scroll; */
+            overflow-x: hidden;
+            margin-bottom: 40px;
+        }
+
+        /* ::-webkit-scrollbar {
+            width: 20px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border: 4px solid rgba(0, 0, 0, 0);
+            background-clip: padding-box;
+            border-radius: 9999px;
+            background-color:var(--boxTitleColor)
+        } */
+
+        .videoBox {
+            width: 672px;
+            height: 540px;
+            border-radius: 35px;
+            background-color: #E6F4ED;
+            box-sizing: border-box;
+            padding: 40px 20px 0 20px;
+            margin-right: 60px;
+            padding-left: 36px;
+        }
+
+        /* 最後兩個不要有margin-bottom */
+        .videoBox:not(:last-child):not(:nth-last-child(2)) {
+            margin-bottom: 40px;
+        }
+
+        .videoTitle {
+            font-size: var(--videoTitleFontSize);
+            margin-top: 16px;
+            color: #068511;
+        }
+
+        .footerWrapper {
+            display: flex;
+            margin-top: var(--footerTopSpace);
+            margin-left: var(--leftSpace);
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="navBarLogo">
+            <a href="../index.html">
+
+                <img src="../assets/logo.svg" alt="" srcset="">
+            </a>
+        </div>
+        <span class="navBarTitle">COVID-19 公費疫苗預約平台</span>
+    </nav>
+
+    <main>
+        <div class="wrapper">
+            <div class="box">
+                <h3 class="boxTitle">衛教資訊</h3>
+                <div class="boxContent">
+                    <!-- 渲染資料位置 -->
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footerWrapper">
+            <p>
+                Copyright © 2022 疫苗預約系統
+                <br>
+                Copyright © 2022 COVID-19 Vaccination Appointment System
+            </p>
+        </div>
+    </footer>
+    <script>
+        
+        //參數 &maxResults={資料長度}&playlistId={播放清單ID}&key={API key}
+        let youtubeApiUrl = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet';
+        fetch(youtubeApiUrl + '&maxResults=8&playlistId=PLSHckwvN6OpLwyhWMzh63BIXrOnRjDin6&key=*apiKey*', {})
+            .then(res => res.json()) //回應轉json格式
+            .then(data => {
+                console.log(data.items);
+                data.items.forEach((element) => {
+                    let videoTitle = element.snippet.title;
+                    //Title太長，做擷取
+                    if (videoTitle.length > 60) {
+                        videoTitle = videoTitle.substr(0, 50) + '......';
+                    }
+                    //渲染資料
+                    let html = `<div class="videoBox">
+                            <iframe width="600" height="400" 
+                            src="https://www.youtube.com/embed/${element.snippet.resourceId.videoId}" 
+                            title="YouTube video player" 
+                            frameborder="0" allow="accelerometer; autoplay; 
+                            clipboard-write; encrypted-media; gyroscope; 
+                            picture-in-picture" allowfullscreen></iframe>
+                            <h3 class="videoTitle">${videoTitle}</h3>
+                            </div>`;
+                    document.querySelector(".boxContent").insertAdjacentHTML("beforeend", html);
+                });
+            });
+    </script>
+</body>
+
+</html>

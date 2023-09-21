@@ -1,0 +1,23 @@
+nav {
+    display: flex;
+    width: 1641px;
+    align-items: center;
+    margin-left: var(--leftSpace);
+    margin-top: 30px;
+
+}
+
+.navBarLogo {
+    margin-right: 40px;
+    cursor: pointer;
+}
+
+.navBarLogo>img {
+    width: 90%;
+    object-fit: cover;
+}
+
+.navBarTitle {
+    font-size: 48px;
+    font-weight: bold;
+}

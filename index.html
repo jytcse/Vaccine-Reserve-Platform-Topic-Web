@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 公費疫苗預約平台</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/navBarStyle.css">
+    <link rel="stylesheet" href="./css/footerWrapperStyle.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            font-family: 'Roboto', sans-serif;
+            --leftSpace: 180px;
+            --boxTitleFontSize: 48px;
+            --boxContentFontSize: 26px;
+            --boxLinkFontSize: 36px;
+            --boxFontColor: #FFFFFF;
+            --footerTopSpace: 10px;
+        }
+
+        body {
+            background-image: url("./assets/line.svg");
+            /* background-size: 100%; */
+            overflow: hidden;
+        }
+
+
+        .wrapper {
+            display: flex;
+            margin-top: 20px;
+            margin-left: var(--leftSpace);
+        }
+
+        .wrapper .box {
+            width: 492px;
+            height: 668px;
+            border-radius: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            padding-top: 60px;
+            transition: all .4s;
+        }
+
+        .box:hover {
+            transform: translateY(-12px);
+        }
+
+        .wrapper .box.reserveBox {
+            animation: reserveBox_in 1s ease-in-out;
+            background-color: #2CA062;
+        }
+
+        @keyframes reserveBox_in {
+            0% {
+                opacity: 20%;
+                transform: translateX(-700px);
+            }
+
+            100% {
+                transform: translateX(0px);
+            }
+        }
+
+        .wrapper .box.informationBox {
+            animation: informationBox_in 1s ease-in-out;
+            background-color: #A1D633;
+            margin: 0 40px;
+        }
+
+        @keyframes informationBox_in {
+            0% {
+                opacity: 20%;
+                transform: translateY(200px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .wrapper .box.eduBox {
+            animation: eduBox_in 1s ease-in-out;
+            background-color: #A5BE08;
+        }
+
+        @keyframes eduBox_in {
+            0% {
+                opacity: 20%;
+                transform: translateX(700px);
+            }
+
+            100% {
+                transform: translateX(0px);
+            }
+        }
+
+        .boxTitle {
+            font-size: var(--boxTitleFontSize);
+            color: var(--boxFontColor);
+        }
+
+        .box hr {
+            width: 399px;
+            background-color: var(--boxFontColor);
+            border-top: 1.5px solid var(--boxFontColor);
+            border-bottom: 1.5px solid var(--boxFontColor);
+        }
+
+        .boxContent {
+            font-weight: bold;
+            font-size: var(--boxContentFontSize);
+            color: var(--boxFontColor);
+        }
+
+        .boxLink {
+            margin-top: auto;
+            margin-bottom: 35px;
+        }
+
+        .link {
+            font-weight: bold;
+            text-decoration: none;
+            font-size: var(--boxLinkFontSize);
+        }
+
+        .link:link {
+            color: var(--boxFontColor);
+        }
+
+        .link:active {
+            color: var(--boxFontColor);
+        }
+
+        .link:visited {
+            color: var(--boxFontColor);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="navBarLogo">
+            <a href="./index.html">
+
+                <img src="./assets/logo.svg" alt="" srcset="">
+            </a>
+        </div>
+        <span class="navBarTitle">COVID-19 公費疫苗預約平台</span>
+    </nav>
+    <main>
+        <div class="wrapper">
+            <div class="box reserveBox">
+                <h3 class="boxTitle">疫苗預約</h3>
+                <hr>
+                <p class="boxContent">立即在各縣市診所及醫院預約<br>施打疫苗</p>
+                <div class="boxLink">
+                    <a class="link" href="./Reserve/CheckPage.html">前往預約</a>
+                </div>
+            </div>
+            <div class="box informationBox">
+                <h3 class="boxTitle">疫情資訊</h3>
+                <hr>
+                <p class="boxContent">了解最近與疫情相關的最新資訊<br>與政府公告</p>
+                <div class="boxLink">
+                    <a class="link" href="./News/NewsPage.html">查看更多</a>
+                </div>
+            </div>
+            <div class="box eduBox">
+                <h3 class="boxTitle">衛教資訊</h3>
+                <hr>
+                <p class="boxContent">透過疾管署衛教影片了解如何<br>預防COVID-19病毒及衛生觀念</p>
+                <div class="boxLink">
+                    <a class="link" href="./EduInfo/EduInfoPage.html">了解詳情</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footerWrapper">
+            <p>
+                Copyright © 2022 疫苗預約系統
+                <br>
+                Copyright © 2022 COVID-19 Vaccination Appointment System
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>
